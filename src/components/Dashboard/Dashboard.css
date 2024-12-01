@@ -1,0 +1,108 @@
+/* Dashboard Layout */
+.dashboard {
+  display: flex;
+  height: 100vh; /* Full viewport height */
+}
+
+/* Sidebar Styling */
+.sidebar {
+  width: 250px;
+  background-color: #333; /* Dark background for the sidebar */
+  color: #fff; /* White text color for contrast */
+  padding: 1rem;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
+  overflow-y: auto; /* Allow scrolling if content overflows */
+  height: 100vh;
+  
+}
+.sidebar-toggle {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.sidebar h2 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+  color: white; /* White text color for visibility */
+}
+
+.sidebar nav a {
+  display: block;
+  color: #fff; /* Default link color */
+  margin: 0.5rem 0;
+  text-decoration: none; /* Remove underline */
+  padding: 0.5rem 1rem; /* Add spacing inside links */
+  border-radius: 5px; /* Rounded corners for links */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.sidebar nav a:hover {
+  background-color: #575757; /* Highlight links on hover */
+}
+
+.sidebar nav a.active {
+  background-color: #007bff; /* Highlight active link */
+  color: #fff;
+  font-weight: bold; /* Emphasize the active link */
+}
+
+/* Main Content Styling */
+.main-content {
+  flex-grow: 1; /* Fill remaining space */
+  background-color: #f4f4f4; /* Light gray background */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top Bar Styling */
+.top-bar {
+  background-color: #007bff; /* Blue background for the top bar */
+  color: #fff; /* White text color */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.top-bar input {
+  width: 60%; /* Search bar width */
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+}
+
+.icons {
+  display: flex;
+  gap: 1rem; /* Space between icons */
+}
+
+.icons button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem; /* Icon size */
+  cursor: pointer;
+}
+
+/* Responsive Sidebar */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px; /* Reduce sidebar width for smaller screens */
+  }
+
+  .sidebar h2 {
+    font-size: 1.2rem; /* Adjust heading size */
+  }
+
+  .sidebar nav a {
+    font-size: 0.9rem; /* Adjust link font size */
+    padding: 0.5rem; /* Reduce padding for smaller links */
+  }
+}

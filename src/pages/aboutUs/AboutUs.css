@@ -1,0 +1,57 @@
+/* Main container style */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f6f9;
+}
+
+/* The main section of the page - centers the content */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+/* The section that holds the text content */
+section {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Heading style to make the title stand out */
+h1 {
+  color: #333;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+/* Paragraph style - makes the text easy to read */
+p {
+  color: #555;
+  font-size: 18px;
+  margin-bottom: 20px;
+  line-height: 1.6; /* This increases the space between lines for better readability */
+}
+
+/* Responsive design: Ensures that the content is well displayed on smaller screens */
+@media (max-width: 768px) {
+  section {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+}

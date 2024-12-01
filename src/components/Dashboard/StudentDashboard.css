@@ -1,0 +1,40 @@
+.student-dashboard {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.student-dashboard h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.application-status,
+.enrolled-courses,
+.notifications {
+  margin-bottom: 30px;
+}
+
+h2 {
+  color: #007bff;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background: #f4f4f4;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+li h3 {
+  margin: 0;
+}
+
+p {
+  margin: 5px 0;
+}

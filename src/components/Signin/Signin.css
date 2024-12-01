@@ -1,0 +1,133 @@
+/* Signup.css */
+
+.signin-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 300px;
+  margin: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ 
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.signin-form {
+  width: 100%;
+  
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+}
+
+input:disabled {
+  background-color: #e9ecef;
+}
+
+button {
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #e2141b;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.google-login-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #db4437;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.google-login-button:hover {
+  background-color: #c23321;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.error-message {
+  color: red;
+  margin-top: 20px;
+}
+
+.success-message {
+  color: green;
+  margin-top: 20px;
+}
+.additional-links {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.additional-links a {
+  color: #ff0000;
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.additional-links a:hover {
+  text-decoration: underline;
+}
+.password-wrapper {
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}

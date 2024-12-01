@@ -1,0 +1,33 @@
+.settings {
+  display: flex;
+  height: 100%;
+}
+
+.settings-sidebar {
+  width: 200px;
+  background-color: #f0f0f0;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.settings-sidebar button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  text-align: left;
+  font-size: 1rem;
+  color: #333;
+}
+
+.settings-sidebar button:hover,
+.settings-sidebar button:focus {
+  background-color: #ddd;
+}
+
+.settings-content {
+  flex-grow: 1;
+  padding: 2rem;
+}
