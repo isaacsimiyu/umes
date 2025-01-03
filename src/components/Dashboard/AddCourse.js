@@ -7,10 +7,46 @@ const AddCourse = ({ onCourseAdded }) => {
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
 
+  [
+    {
+      "_id": "20",
+      "name": "Computer Science",
+      "description": "Study of computation, programming, and algorithms.",
+      "cutoff": 60
+    },
+    {
+      "_id": "30",
+      "name": "Networking",
+      "description": "Study of computer networks and communication systems.",
+      "cutoff": 65
+    },
+    {
+      "_id": "40",
+      "name": "Mathematical Science",
+      "description": "Study of advanced mathematics and applications.",
+      "cutoff": 70
+    },
+    {
+      "_id": "30",
+      "name": "Education science",
+      "description": "Study of teaching methods and educational systems.",
+      "cutoff": 55
+    },
+    {
+      "_id": "30",
+      "name": "Actuaral Science",
+      "description": "Study of risk analysis and financial mathematics.",
+      "cutoff": 75
+    },
+    
+  ]
+  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
     setSuccessMessage('');
+    
 
     try {
       const newCourse = {

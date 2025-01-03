@@ -1,0 +1,145 @@
+/* General Container Styles */
+.course-apply {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.course-apply h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.course-apply h2 {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+/* Error Message */
+.error {
+  color: #e53935;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Loading Spinner Styles */
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner p {
+  margin-top: 10px;
+  color: #777;
+  font-size: 14px;
+}
+
+/* List Styles */
+.course-list,
+.university-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.course-item,
+.university-item {
+  cursor: pointer;
+  padding: 15px;
+  border: 1px solid #ccc;
+  margin: 5px 0;
+  transition: background-color 0.3s ease;
+}
+
+.course-item:hover,
+.university-item:hover {
+  background-color: #f9f9f9;
+  border-color: #aaa;
+}
+
+.course-item.selected,
+.university-item.selected {
+  background-color: #e3f2fd;
+  border-color: #64b5f6;
+}
+
+.course-item h3,
+.university-item h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.course-item p,
+.university-item p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.course-item strong {
+  font-weight: bold;
+  color: #444;
+}
+
+/* Application Submit Button */
+.application-submit {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.application-submit button {
+  background-color: #64b5f6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  max-width: 200px;
+
+}
+
+.application-submit button:hover {
+  background-color: #42a5f5;
+}
+
+.application-submit button:disabled {
+  background-color: #ddd;
+  color: #999;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .course-apply {
+    padding: 15px;
+  }
+
+  .course-item,
+  .university-item {
+    padding: 10px;
+  }
+
+  .course-item h3,
+  .university-item h3 {
+    font-size: 16px;
+  }
+
+  .course-item p,
+  .university-item p {
+    font-size: 12px;
+  }
+
+  .application-submit button {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+}

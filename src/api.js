@@ -1,31 +1,23 @@
 import axios from 'axios';
 
-// Define the base API URL
-const API_URL = 'http://localhost:5000';
 
-/**
- * Fetch all available courses.
- * @returns {Promise<Object[]>} - List of courses.
- */
+const API_URL = 'http://localhost:3500/api';
+
+
 export const fetchCourses = async () => {
   try {
-    const response = await axios.get(`${API_URL}/api/courses`);
+    const response = await axios.get(`${API_URL}/models/courses`);
     return response.data;
   } catch (error) {
     console.error('Error fetching courses:', error);
-    throw error; // Re-throw error for further handling if needed
+    throw error; 
   }
 };
 
-/**
- * Apply for a course.
- * @param {string} courseId - ID of the course to apply for.
- * @param {string} studentId - ID of the student applying.
- * @returns {Promise<Object>} - Response from the server.
- */
+
 export const applyForCourse = async (courseId, studentId) => {
   try {
-    const response = await axios.post(`${API_URL}/api/applications`, {
+    const response = await axios.post(`${API_URL}/models/courses/apply`, {
       courseId,
       studentId,
     });
@@ -36,14 +28,10 @@ export const applyForCourse = async (courseId, studentId) => {
   }
 };
 
-/**
- * Add a new course.
- * @param {Object} course - The course object to add.
- * @returns {Promise<Object>} - The added course.
- */
+
 export const addCourse = async (course) => {
   try {
-    const response = await axios.post(`${API_URL}/api/courses`, course);
+    const response = await axios.post(`${API_URL}/models/courses`, course);
     return response.data;
   } catch (error) {
     console.error('Error adding course:', error);
@@ -51,15 +39,10 @@ export const addCourse = async (course) => {
   }
 };
 
-/**
- * Update cutoff score for a program.
- * @param {string} programId - The program ID.
- * @param {number} cutoff - The new cutoff value.
- * @returns {Promise<Object>} - Updated program data.
- */
+
 export const updateCutoff = async (programId, cutoff) => {
   try {
-    const response = await axios.put(`${API_URL}/api/courses/${programId}/cutoff`, {
+    const response = await axios.put(`${API_URL}/models/courses/${programId}/cutoff`, {
       cutoff,
     });
     return response.data;
@@ -69,17 +52,57 @@ export const updateCutoff = async (programId, cutoff) => {
   }
 };
 
-/**
- * Generalized error handler for API calls (optional utility function).
- * @param {Function} apiCall - The API call function.
- * @returns {Promise<Object>} - The result of the API call or error message.
- */
-export const handleApiCall = async (apiCall) => {
+
+export const fetchReports = async (studentId, userRole) => {
   try {
-    const result = await apiCall();
-    return result;
+    const response = await axios.get(`${API_URL}/reports`, {
+      params: { studentId, userRole },
+    });
+    return response.data;
   } catch (error) {
-    console.error('API call failed:', error.response?.data || error.message);
+    console.error('Error fetching reports:', error);
+    throw error;
+  }
+};
+
+
+export const downloadReport = async (reportId) => {
+  try {
+    const response = await axios.get(`${API_URL}/reports/${reportId}/download`, {
+      responseType: 'blob', 
+    });
+
+    
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'report.pdf'); 
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  } catch (error) {
+    console.error('Error downloading report:', error);
+    throw error;
+  }
+};
+
+
+export const fetchStudentProgress = async (studentId) => {
+  try {
+    const response = await axios.get(`${API_URL}/progress/${studentId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching student progress:', error);
+    throw error;
+  }
+};
+
+export const fetchUniversities = async () => {
+  try {
+    const response = await axios.get(`${API_URL}models/universities`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching universities:', error);
     throw error;
   }
 };

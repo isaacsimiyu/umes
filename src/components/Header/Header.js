@@ -9,23 +9,22 @@ import './Header.css';
 const Header = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const menuRef = useRef(null); // Reference for the menu to handle clicks outside
-
+  const menuRef = useRef(null); 
   const toggleMenu = () => {
     setMenuOpen((prevState) => !prevState);
   };
 
   const handleNavigation = (path) => {
     navigate(path);
-    setMenuOpen(false); // Close the menu after navigation
+    setMenuOpen(false); 
   };
 
   const handleDropdownItemClick = (path) => {
     navigate(path);
-    setMenuOpen(false); // Close the menu after navigation
+    setMenuOpen(false); 
   };
 
-  // Close menu if clicked outside
+  
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -72,7 +71,7 @@ const Header = () => {
               <Nav.Link as={Link} to="/" onClick={toggleMenu}>
                 Home
               </Nav.Link>
-              <Nav.Link as={Link} to="/About" onClick={toggleMenu}>
+              <Nav.Link as={Link} to="/AboutUs" onClick={toggleMenu}>
                 AboutUs
               </Nav.Link>
             

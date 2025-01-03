@@ -1,8 +1,8 @@
-// src/pages/HOME/Home.js
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../components/Header/Header';
-import './Home.css'; // Import the CSS file
+import './Home.css';
 import Footer from '../../components/Footer/Footer';
 
 const Home = () => {
@@ -16,10 +16,10 @@ const Home = () => {
             Manage your applications, review student enrollments, or oversee course management through our system.
           </p>
           <div className="buttons">
-            <Link to="/register" className="button">
+            <Link to="/Signup" className="button">
               Register
             </Link>
-            <Link to="/" className="button">
+            <Link to="/Signin" className="button">
               Login
             </Link>
           </div>

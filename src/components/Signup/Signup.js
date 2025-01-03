@@ -15,68 +15,73 @@ const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  // Regex for validation
-  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // At least 8 characters, 1 letter, 1 number
+  
+  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; 
   const userNameOrEmailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$|^[a-zA-Z0-9_]{3,15}$/;
-  const phoneRegex = /^\+?[1-9]\d{1,14}$/; // E.164 format
+  const phoneRegex = /^\+?[1-9]\d{1,14}$/;
 
-  // Handle username/email input change
+ 
   const handleUserNameOrEmailChange = (e) => {
     setUserNameOrEmail(e.target.value.trim());
-    setErrors((prevErrors) => ({ ...prevErrors, userNameOrEmail: '' })); // Clear username/email error
+    setErrors((prevErrors) => ({ ...prevErrors, userNameOrEmail: '' })); 
   };
 
-  // Handle password input change
+  
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-    setErrors((prevErrors) => ({ ...prevErrors, password: '' })); // Clear password error
+    setErrors((prevErrors) => ({ ...prevErrors, password: '' })); 
   };
+  const disableCopyPaste = (e) => {
+    e.preventDefault();
+    alert("Copying and pasting is not allowed for security reasons.");
+  }
 
-  // Handle phone number change
+  
   const handlePhoneChange = (value) => {
     setPhone(value);
-    setErrors((prevErrors) => ({ ...prevErrors, phone: '' })); // Clear phone error
+    setErrors((prevErrors) => ({ ...prevErrors, phone: '' })); 
   };
 
-  // Toggle password visibility
+  
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  // Form validation
+  
   const validateForm = () => {
     const newErrors = {};
 
-    // Validate username/email
+    
     if (!userNameOrEmailRegex.test(userNameOrEmail.trim())) {
-      newErrors.userNameOrEmail = 'Enter a valid email or username (3-15 characters).';
+      newErrors.userNameOrEmail = 'Enter a valid email or username .';
     }
 
-    // Validate password
-    console.log('Password input value:', password); // Log the current password value
-    console.log('Password Regex Test:', passwordRegex.test(password.trim())); // Log if the password passes the regex
+   
+    console.log('Password input value:', password); 
+    console.log('Password Regex Test:', passwordRegex.test(password.trim())); 
 
     if (!passwordRegex.test(password.trim())) {
-      newErrors.password = 'Password must be at least 8 characters, include at least one letter and one number.';
+      newErrors.password = 'Password must be at least 8 characters.';
     }
 
-    // Validate phone number
+    
     if (!phone || !phoneRegex.test(phone.trim())) {
       newErrors.phone = 'Enter a valid phone number.';
     }
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0; // Return true if no errors
+    return Object.keys(newErrors).length === 0; 
   };
 
-  // Form submission handler
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
     if (validateForm()) {
       try {
-        const response = await axios.post('/signup', { userNameOrEmail, password, phone });
+        const response = await axios.post('http://localhost:3500/signup',
+           { userNameOrEmail, password, phone });
         console.log('Response:', response.data);
         setIsSuccess(true);
         setUserNameOrEmail('');
@@ -92,16 +97,16 @@ const Signup = () => {
         setIsLoading(false);
       }
     } else {
-      setIsLoading(false); // Stop loading if validation fails
+      setIsLoading(false); 
     }
   };
 
-  // Autofocus username/email field on mount
+ 
   useEffect(() => {
     document.getElementById('userNameOrEmail')?.focus();
   }, []);
 
-  // Autofocus first error field if validation fails
+  
   useEffect(() => {
     if (errors.userNameOrEmail || errors.password || errors.phone) {
       const firstErrorField = errors.userNameOrEmail
@@ -114,10 +119,11 @@ const Signup = () => {
   }, [errors]);
 
   return (
+    <div className="signup-form">
     <div className="signup-container">
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit} className="signup-form">
-        {/* Username/Email Field */}
+        
         <div className="form-group">
           <label htmlFor="userNameOrEmail" className="sr-only">User Name or Email</label>
           <input
@@ -135,7 +141,7 @@ const Signup = () => {
           )}
         </div>
 
-        {/* Phone Number Field */}
+        
         <div className="form-group">
           <label htmlFor="phone" className="sr-only">Phone Number</label>
           <PhoneInput
@@ -154,7 +160,7 @@ const Signup = () => {
           )}
         </div>
 
-        {/* Password Field */}
+       
         <div className="form-group">
           <label htmlFor="password" className="sr-only">Password</label>
           <div className="password-wrapper">
@@ -165,6 +171,10 @@ const Signup = () => {
               value={password}
               onChange={handlePasswordChange}
               disabled={isLoading}
+              onCopy={disableCopyPaste}
+              onPaste={disableCopyPaste}
+              onCut={disableCopyPaste}
+              autoComplete="off"
               aria-invalid={!!errors.password}
               aria-describedby="password-error"
             />
@@ -177,20 +187,22 @@ const Signup = () => {
           )}
         </div>
 
-        {/* Submit Button */}
+        
         <button type="submit" disabled={isLoading}>
           {isLoading ? 'Signing up...' : 'Sign Up'}
         </button>
       </form>
 
-      {/* Success Message */}
+     
       {isSuccess && <p className="success-message">Successfully signed up! You can now <a href="/signin">Sign In</a>.</p>}
 
-      {/* Form-level Errors */}
+      
       {errors.form && <p className="error-message">{errors.form}</p>}
 
-      {/* Redirect to Sign In */}
+      
       <p>Already have an account? <a href="/signin">Sign In</a></p>
+    
+    </div>
     </div>
   );
 };

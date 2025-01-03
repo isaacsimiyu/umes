@@ -11,17 +11,27 @@ const ForgotPassword = () => {
     setEmail(e.target.value);
   };
 
+  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!isValidEmail(email)) {
+      setMessage('Please enter a valid email address.');
+      return;
+    }
     setIsLoading(true);
-    axios.post('/forgot-password', { email })
-      .then(response => {
+    axios.post('http://localhost:3500/forgot-password', { email })
+
+      .then((response) => {
         setMessage('A password reset link has been sent to your email.');
         setEmail('');
-        setIsLoading(false);
       })
-      .catch(error => {
-        setMessage('Failed to send password reset link. Please try again.');
+      .catch((error) => {
+        const errorMsg =
+          error.response?.data?.message || 'Failed to send password reset link. Please try again.';
+        setMessage(errorMsg);
+      })
+      .finally(() => {
         setIsLoading(false);
       });
   };
@@ -31,9 +41,12 @@ const ForgotPassword = () => {
       <h2>Forgot Password</h2>
       <form onSubmit={handleSubmit} className="forgot-password-form">
         <div className="form-group">
-          <label htmlFor="email"></label>
+          <label htmlFor="email" aria-label="Email Address">
+            Email Address
+          </label>
           <input
             type="email"
+            id="email"
             placeholder="Enter your email"
             value={email}
             onChange={handleEmailChange}
@@ -44,7 +57,7 @@ const ForgotPassword = () => {
           {isLoading ? 'Sending...' : 'Send Reset Link'}
         </button>
       </form>
-      {message && <p className="message">{message}</p>}
+      {message && <p className={`message ${message.includes('Failed') ? 'error' : 'success'}`}>{message}</p>}
     </div>
   );
 };

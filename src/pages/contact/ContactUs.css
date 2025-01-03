@@ -16,6 +16,24 @@
   max-width: 600px;
   margin: 0 20px;
 }
+.contact-email {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+/* Contact Email Links */
+.contact-email a {
+  text-decoration: none;
+  color: black;
+  transition: color 0.3s;
+}
+
+.contact-email a:hover {
+  color: #e71d36;
+}
 
 h1 {
   color: #333;

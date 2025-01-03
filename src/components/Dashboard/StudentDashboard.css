@@ -6,12 +6,32 @@
 .student-dashboard h1 {
   color: #333;
   margin-bottom: 20px;
+
+  .dashboard-content h1 {
+    text-align: center;
+    color: #007bff;
+  }
+  
+  .search-results ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .search-results li {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
 }
 
 .application-status,
 .enrolled-courses,
 .notifications {
   margin-bottom: 30px;
+}
+h1{
+  text-align: center;
 }
 
 h2 {

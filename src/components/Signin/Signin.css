@@ -131,3 +131,12 @@ button:disabled {
   transform: translateY(-50%);
   cursor: pointer;
 }
+@media (max-width: 576px) {
+  .signin-container {
+    padding: 20px;
+  }
+
+  .form-group input {
+    font-size: 14px;
+  }
+}

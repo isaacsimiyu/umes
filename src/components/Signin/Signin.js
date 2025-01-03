@@ -56,11 +56,15 @@ const SignIn = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+  const disableCopyPaste = (e) => {
+    e.preventDefault();
+    alert("Copying and pasting is not allowed for security reasons.");
+  };
 
   const validateForm = () => {
     const newErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // Minimum eight characters, at least one letter and one number
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;  
 
     if (!userNameOrEmail) {
       newErrors.userNameOrEmail = 'User Name or Email is required';
@@ -84,7 +88,7 @@ const SignIn = () => {
 
     if (validateForm()) {
       try {
-        const response = await axios.post('/signin', { userNameOrEmail, password });
+        const response = await axios.post('http://localhost:3500/signin', { userNameOrEmail, password });
         localStorage.setItem('token', response.data.token);
         navigate('/dashboard');
       } catch (error) {
@@ -162,6 +166,10 @@ const SignIn = () => {
               value={password}
               onChange={handlePasswordChange}
               disabled={isLoading}
+              onCopy={disableCopyPaste}
+              onPaste={disableCopyPaste}
+              onCut={disableCopyPaste}
+              autoComplete="off"
               aria-invalid={!!errors.password}
               aria-describedby="password-error"
             />

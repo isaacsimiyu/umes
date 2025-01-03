@@ -1,7 +1,10 @@
-import Footer from '../../components/Footer/Footer';
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
+import axios from 'axios';
 import Header from '../../components/Header/Header';
-import './ContactUs.css'; 
+import Footer from '../../components/Footer/Footer';
+import './ContactUs.css';
 
 const ContactUs = () => {
   const [form, setForm] = useState({
@@ -17,16 +20,37 @@ const ContactUs = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', form);
-    alert('Thank you for contacting us! We will get back to you soon.');
-    setForm({ name: '', email: '', message: '' });
+
+    try {
+      const response = await axios.post('http://localhost:3500/api/contact', {
+        email: form.email,
+        message: form.message,
+        name: form.name,
+      });
+
+      if (response.status === 200) {
+        alert('Thank you for contacting us! Your message has been sent.');
+        setForm({ name: '', email: '', message: '' });
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      alert('There was an error sending your message. Please try again later.');
+    }
   };
 
   return (
     <div>
       <Header />
+      <div className="contact-email">
+        <a href="mailto:isaacsimiyu757@gmail.com">
+          <FontAwesomeIcon icon={faEnvelope} /> Email
+        </a>
+        <a href="https://wa.me/254745323638">
+          <FontAwesomeIcon icon={faPhone} /> WhatsApp
+        </a>
+      </div>
       <main className="main">
         <section className="section">
           <h1>Contact Us</h1>
@@ -40,6 +64,7 @@ const ContactUs = () => {
                 name="name"
                 value={form.name}
                 onChange={handleChange}
+                placeholder="Enter your name"
                 required
               />
             </div>
@@ -51,6 +76,7 @@ const ContactUs = () => {
                 name="email"
                 value={form.email}
                 onChange={handleChange}
+                placeholder="Enter your email"
                 required
               />
             </div>
@@ -61,6 +87,7 @@ const ContactUs = () => {
                 name="message"
                 value={form.message}
                 onChange={handleChange}
+                placeholder="Write your message"
                 required
               />
             </div>
@@ -68,7 +95,7 @@ const ContactUs = () => {
           </form>
         </section>
       </main>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

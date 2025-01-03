@@ -1,109 +1,129 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { fetchCourses, addCourse, updateCutoff, handleApiCall } from '../../api'; // Import your API functions
+import './AdminDashboard.css'; // Import the associated styles
 
-function AdminDashboard() {
+const AdminDashboard = () => {
   const [courses, setCourses] = useState([]);
-  const [newCourse, setNewCourse] = useState({ name: '', cutoff: '' });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [newCourse, setNewCourse] = useState({ name: '', description: '', cutoff: '' });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchCourses();
-  }, []);
+    const loadCourses = async () => {
+      try {
+        setLoading(true);
+        const data = await fetchCourses();
+        setCourses(data);
+      } catch (err) {
+        setError('Failed to load courses. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  // Fetch all courses
-  const fetchCourses = async () => {
-    setLoading(true);
-    try {
-      const result = await axios.get('/api/courses');
-      setCourses(result.data);
-      setError('');
-    } catch (err) {
-      setError('Failed to fetch courses. Please try again later.');
-    } finally {
-      setLoading(false);
-    }
-  };
+    loadCourses();
+  }, []);
 
   // Handle adding a new course
   const handleAddCourse = async (e) => {
-    e.preventDefault(); // Prevent form submission reload
-    if (!newCourse.name || !newCourse.cutoff) {
-      setError('Please provide both course name and cutoff.');
+    e.preventDefault();
+    if (!newCourse.name || !newCourse.description || !newCourse.cutoff) {
+      alert('Please fill in all fields before adding a course.');
       return;
     }
 
     try {
-      await axios.post('/api/courses', newCourse);
-      setNewCourse({ name: '', cutoff: '' }); // Reset form
-      setError('');
-      fetchCourses(); // Refresh course list
+      const addedCourse = await addCourse(newCourse);
+      setCourses([...courses, addedCourse]); // Update the course list
+      setNewCourse({ name: '', description: '', cutoff: '' }); // Reset form
     } catch (err) {
-      setError('Failed to add course. Please try again later.');
+      setError('Failed to add course. Please try again.');
     }
   };
 
-  // Handle cutoff update
-  const handleCutoffUpdate = async (programId, cutoff) => {
+  // Handle updating a course's cutoff value
+  const handleUpdateCutoff = async (courseId, newCutoff) => {
+    if (!newCutoff) {
+      alert('Please enter a valid cutoff value.');
+      return;
+    }
+
     try {
-      await axios.put(`/api/programs/${programId}/cutoff`, { cutoff });
-      fetchCourses(); // Refresh course list
-      setError('');
+      const updatedCourse = await updateCutoff(courseId, newCutoff);
+      setCourses(courses.map((course) =>
+        course._id === courseId ? updatedCourse : course
+      ));
     } catch (err) {
-      setError('Failed to update cutoff. Please try again later.');
+      setError('Failed to update cutoff. Please try again.');
     }
   };
 
   return (
-    <div>
+    <div className="admin-dashboard">
       <h1>Admin Dashboard</h1>
-      <h2>Manage Courses and Programs</h2>
 
-      {/* Display error messages */}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {/* Error Message */}
+      {error && <p className="error">{error}</p>}
 
-      {/* Add New Course Form */}
-      <form onSubmit={handleAddCourse}>
-        <h3>Add New Course</h3>
-        <input
-          type="text"
-          placeholder="Course Name"
-          value={newCourse.name}
-          onChange={(e) => setNewCourse({ ...newCourse, name: e.target.value })}
-        />
-        <input
-          type="number"
-          placeholder="Cutoff Point"
-          value={newCourse.cutoff}
-          onChange={(e) => setNewCourse({ ...newCourse, cutoff: e.target.value })}
-        />
-        <button type="submit">Add Course</button>
-      </form>
-
-      {/* Loading Indicator */}
-      {loading && <p>Loading courses...</p>}
-
-      {/* Display Existing Courses */}
-      {!loading && courses.length > 0 && (
-        <div>
-          <h3>Existing Courses</h3>
-          {courses.map((course) => (
-            <div key={course.id} style={{ border: '1px solid #ccc', margin: '10px', padding: '10px' }}>
-              <h4>{course.name}</h4>
-              <p>Cutoff Point: {course.cutoff}</p>
+      {/* Loading Spinner */}
+      {loading ? (
+        <p>Loading courses...</p>
+      ) : (
+        <>
+          {/* Add New Course Form */}
+          <section className="add-course">
+            <h2>Add New Course</h2>
+            <form onSubmit={handleAddCourse}>
+              <input
+                type="text"
+                placeholder="Course Name"
+                value={newCourse.name}
+                onChange={(e) => setNewCourse({ ...newCourse, name: e.target.value })}
+                required
+              />
+              <textarea
+                placeholder="Course Description"
+                value={newCourse.description}
+                onChange={(e) => setNewCourse({ ...newCourse, description: e.target.value })}
+                required
+              ></textarea>
               <input
                 type="number"
-                placeholder="Set new cutoff"
-                onBlur={(e) => handleCutoffUpdate(course.id, e.target.value)}
+                placeholder="Cutoff Score"
+                value={newCourse.cutoff}
+                onChange={(e) => setNewCourse({ ...newCourse, cutoff: e.target.value })}
+                required
               />
-            </div>
-          ))}
-        </div>
-      )}
+              <button type="submit">Add Course</button>
+            </form>
+          </section>
 
-      {!loading && courses.length === 0 && <p>No courses available.</p>}
+          {/* Manage Courses Section */}
+          <section className="manage-courses">
+            <h2>Manage Courses</h2>
+            {courses.length > 0 ? (
+              <ul>
+                {courses.map((course) => (
+                  <li key={course._id}>
+                    <h3>{course.name}</h3>
+                    <p>{course.description}</p>
+                    <p><strong>Cutoff:</strong> {course.cutoff}</p>
+                    <input
+                      type="number"
+                      placeholder="Update Cutoff"
+                      onBlur={(e) => handleUpdateCutoff(course._id, e.target.value)}
+                    />
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No courses available. Please add some courses.</p>
+            )}
+          </section>
+        </>
+      )}
     </div>
   );
-}
+};
 
 export default AdminDashboard;

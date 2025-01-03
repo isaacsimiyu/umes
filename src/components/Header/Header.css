@@ -1,26 +1,26 @@
-/* Basic Reset */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* General Styles */
+
 body {
-  font-family: 'Arial', sans-serif; /* Use a readable, modern font */
+  font-family: 'Arial', sans-serif; 
   line-height: 1.6;
 }
 
-/* Header Styling */
+
 .header {
-  background-color: #333; /* Dark background for contrast */
+  background-color: #333; 
   color: #fff;
   padding: 1rem 0;
-  position: sticky; /* Stick to the top while scrolling */
+  position: sticky; 
   top: 0;
-  z-index: 1000; /* Ensure it stays above other content */
+  z-index: 1000;
   width: 100%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add slight shadow for depth */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .logo-link {
@@ -54,7 +54,7 @@ body {
   margin: 0 1rem;
 }
 
-/* Buttons */
+
 .signup-btn,
 .signin-btn {
   margin-left: 0.5rem;
@@ -77,17 +77,17 @@ body {
   display: flex;
   justify-content: flex-end;
   padding: 0.5rem;
-  gap: 10px; /* Add spacing between buttons */
+  gap: 10px; 
 }
 
-/* Menu Toggle Button */
+
 .menu-toggle {
   background: none;
   border: none;
   color: #fff;
   font-size: 1.5rem;
   cursor: pointer;
-  display: none; /* Hidden on larger screens */
+  display: none; 
 }
 
 .menu-toggle:focus {
@@ -97,7 +97,7 @@ body {
 .header-nav {
   display: flex;
   align-items: center;
-  gap: 1.5rem; /* Add spacing between items */
+  gap: 1.5rem; 
   transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
@@ -112,26 +112,29 @@ body {
   overflow: hidden;
 }
 
-/* Align the nav links */
+
 .header-nav .nav {
   display: flex;
   gap: 1rem;
   align-items: center;
 }
 
-/* Link Styling */
+
 .header-nav a {
   color: #fff;
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s ease;
+  background-color: #007bff;
 }
 
 .header-nav a:hover {
-  color: #007bff;
+  color: #444;
+  background-color: #007bff;
+  font-weight: bolder;
 }
 
-/* Dropdown Menu */
+
 .nav-dropdown .dropdown-menu {
   background-color: #444;
   border: none;
@@ -148,14 +151,14 @@ body {
   color: #007bff;
 }
 
-/* Responsive Styles */
+
 @media (max-width: 768px) {
   .menu-toggle {
-    display: block; /* Show toggle button on smaller screens */
+    display: block; 
   }
 
   .header-container {
-    flex-wrap: nowrap; /* Prevent wrapping on smaller screens */
+    flex-wrap: nowrap; 
   }
 
   .header-nav {
@@ -169,7 +172,7 @@ body {
     opacity: 0;
     overflow: hidden;
     padding: 1rem 0;
-    z-index: 999; /* Ensure it appears above other content */
+    z-index: 999;
   }
 
   .header-nav.open {
