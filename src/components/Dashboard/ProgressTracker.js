@@ -1,61 +1,94 @@
-import React, { useState, useEffect } from 'react';
-import { fetchStudentProgress } from '../api'; 
-import './ProgressTracker.css';
+import React, { useState } from 'react';
+import axios from 'axios'; 
+import './UploadProfile.css';
 
-const ProgressTracker = ({ studentId }) => {
-  const [progressData, setProgressData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const UploadProfile = () => {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState('');
+  const [uploadStatus, setUploadStatus] = useState('');
+  const [isUploading, setIsUploading] = useState(false);
 
-  useEffect(() => {
-    const loadProgress = async () => {
-      try {
-        setLoading(true);
-        const data = await fetchStudentProgress(studentId); 
-        setProgressData(data);
-      } catch (err) {
-        setError('Failed to load progress data. Please try again later.');
-      } finally {
-        setLoading(false);
+  
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
+      if (!allowedTypes.includes(file.type)) {
+        alert('Only JPG, PNG, and PDF files are allowed.');
+        return;
       }
-    };
+      if (file.size > 5 * 1024 * 1024) {
+        alert('File size should be less than 5MB.');
+        return;
+      }
+      setSelectedFile(file);
+      setPreviewUrl(file.type.startsWith('image/') ? URL.createObjectURL(file) : '');
+    }
+  };
 
-    loadProgress();
-  }, [studentId]);
+ 
+  const handleFileUpload = async (e) => {
+    e.preventDefault();
 
-  if (loading) {
-    return <p>Loading progress...</p>;
-  }
+    if (!selectedFile) {
+      alert('Please select a file before uploading.');
+      return;
+    }
 
-  if (error) {
-    return <p className="error">{error}</p>;
-  }
+    setIsUploading(true); 
+    const formData = new FormData();
+    formData.append('profileFile', selectedFile);
 
-  if (progressData.length === 0) {
-    return <p>No progress data available.</p>;
-  }
+    try {
+      const response = await axios.post('/api/upload-profile', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      if (response.status === 200) {
+        setUploadStatus('File uploaded successfully!');
+      } else {
+        throw new Error('Failed to upload the file.');
+      }
+    } catch (error) {
+      setUploadStatus(`Error uploading file: ${error.response?.data?.message || error.message}`);
+    } finally {
+      setIsUploading(false); 
+    }
+  };
 
   return (
-    <div className="progress-tracker">
-      <h1>Progress Tracker</h1>
-      <ul className="progress-list">
-        {progressData.map((course) => (
-          <li key={course.id} className="progress-item">
-            <div className="course-header">
-              <h3>{course.name}</h3>
-              <span>{course.progress}%</span>
-            </div>
-            <div className="progress-bar-container">
-              <div
-                className="progress-bar"
-                style={{ width: `${course.progress}%` }}
-              ></div>
-            </div>
-          </li>
-        ))}
-      </ul>
+    <div className="upload-profile">
+      <h1>Upload Profile</h1>
+
+      <form onSubmit={handleFileUpload}>
+        <label htmlFor="fileInput" className="file-label">
+          Choose a profile picture or document:
+        </label>
+        <input
+          id="fileInput"
+          type="file"
+          accept=".jpg,.jpeg,.png,.pdf"
+          onChange={handleFileChange}
+          aria-label="Choose a file to upload"
+        />
+
+        {previewUrl && (
+          <div className="preview">
+            <h3>Preview:</h3>
+            <img src={previewUrl} alt="File Preview" className="preview-image" />
+          </div>
+        )}
+
+        <button type="submit" className="upload-button" disabled={isUploading}>
+          {isUploading ? 'Uploading...' : 'Upload File'}
+        </button>
+      </form>
+
+      {uploadStatus && <p className="upload-status">{uploadStatus}</p>}
     </div>
   );
 };
 
-export default ProgressTracker;
+export default UploadProfile;

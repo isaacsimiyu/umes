@@ -1,0 +1,127 @@
+/* ✅ General Styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+}
+
+/* ✅ Main Container */
+.assign-courses {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+}
+
+.assign-courses h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* ✅ List Styling */
+.assign-courses ul {
+  list-style: none;
+  padding: 0;
+}
+
+.assign-courses li {
+  background: #f9f9f9;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  
+}
+
+.assign-courses h3 {
+  margin: 0;
+  color: #333;
+}
+
+/* ✅ Select Dropdown */
+.assign-courses select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.assign-courses select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* ✅ Buttons */
+.assign-courses button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.assign-courses button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.assign-courses button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+/* ✅ Error & Success Messages */
+.message {
+  padding: 10px;
+  margin: 15px 0;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.error-message {
+  background-color: #ffdddd;
+  color: #d8000c;
+  border-left: 4px solid #d8000c;
+}
+
+.success-message {
+  background-color: #ddffdd;
+  color: #008000;
+  border-left: 4px solid #008000;
+}
+
+.message button {
+  background: none;
+  border: none;
+  font-weight: bold;
+  float: right;
+  cursor: pointer;
+}
+
+/* ✅ Responsive Design */
+@media (max-width: 600px) {
+  .assign-courses {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .assign-courses select {
+    font-size: 14px;
+  }
+
+  .assign-courses button {
+    width: 100%;
+  }
+}

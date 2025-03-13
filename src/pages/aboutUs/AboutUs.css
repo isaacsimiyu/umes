@@ -1,57 +1,109 @@
-/* Main container style */
+
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
-  background-color: #f4f6f9;
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  background-color: #f8f9fa;
+  color: #333;
 }
 
-/* The main section of the page - centers the content */
-main {
+.main {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
+  justify-content: flex-start; 
+ 
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 500px;
+  min-height: calc(100vh - 100px); 
+  padding-bottom: 350px; 
+}
+
+
+.welcome-section {
+  margin-top: 100px; 
+  text-align: center;
   padding: 20px;
 }
 
-/* The section that holds the text content */
-section {
-  background-color: #fff;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  width: 100%;
-  text-align: center;
-}
-
-/* Heading style to make the title stand out */
-h1 {
+.welcome-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
   color: #333;
-  font-size: 32px;
-  margin-bottom: 20px;
 }
 
-/* Paragraph style - makes the text easy to read */
-p {
+.welcome-section p {
+  font-size: 1.2rem;
   color: #555;
-  font-size: 18px;
-  margin-bottom: 20px;
-  line-height: 1.6; /* This increases the space between lines for better readability */
 }
 
-/* Responsive design: Ensures that the content is well displayed on smaller screens */
+
+.vision-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px; 
+  margin: 0 auto; 
+}
+
+.featured-container {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.featured-container h3 {
+  font-size: 1.5rem;
+  color: #4CAF50;
+  cursor: pointer;
+  transition: color 0.3s ease
+}
+
+
+.featured-container h3:hover {
+  color: #007bff;
+}
+.featured-container ul {
+  margin-top: 10px;
+  padding-left: 20px;
+  
+  list-style-type: disc;
+}
+
+.featured-container ul li {
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  color: #db1515;
+}
+
+
 @media (max-width: 768px) {
-  section {
-    padding: 20px;
+  .welcome-section h1 {
+    font-size: 2rem;
   }
 
-  h1 {
-    font-size: 28px;
+  .welcome-section p {
+    font-size: 1rem;
   }
 
-  p {
-    font-size: 16px;
+  .featured-container {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .welcome-section h1 {
+    font-size: 1.8rem;
+  }
+
+  .welcome-section p {
+    font-size: 0.9rem;
   }
 }

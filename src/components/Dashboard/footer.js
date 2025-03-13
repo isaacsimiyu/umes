@@ -5,7 +5,7 @@ const footer = () => {
   return (
     <footer className="dashboard-footer">
       <div className="footer-content">
-        {/* Logo and Description */}
+      
         <div className="footer-logo">
           <h2>Student Dashboard</h2>
           <p>
@@ -13,7 +13,7 @@ const footer = () => {
           </p>
         </div>
 
-        {/* Navigation Links */}
+       
         <div className="footer-links">
           <h3>Quick Links</h3>
           <ul>
@@ -35,7 +35,7 @@ const footer = () => {
           </ul>
         </div>
 
-        {/* Social Media Links */}
+       
         <div className="footer-social">
           <h3>Follow Us</h3>
           <div className="social-icons">
@@ -55,7 +55,7 @@ const footer = () => {
         </div>
       </div>
 
-      {/* Copyright */}
+     
       <div className="footer-bottom">
         <p>© {new Date().getFullYear()} Student Dashboard. All rights reserved.</p>
       </div>

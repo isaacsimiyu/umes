@@ -1,6 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { fetchCourses, fetchUniversities } from '../../api'; // Import API functions
+import axios from 'axios';
 import './StudentDashboard.css';
+
+
+export const fetchCourses = async () => {
+  const response = await axios.get('http://localhost:3500/api/courses');
+  if (response.status !== 200) {
+    throw new Error('Failed to fetch courses');
+  }
+  return response.data; 
+};
+
+
+export const fetchUniversities = async () => {
+  const response = await axios.get('http://localhost:3500/api/universities');
+  if (response.status !== 200) {
+    throw new Error('Failed to fetch universities');
+  }
+  return response.data; 
+};
 
 const StudentDashboard = () => {
   const [courses, setCourses] = useState([]);
@@ -8,21 +26,19 @@ const StudentDashboard = () => {
   const [notifications, setNotifications] = useState([]);
   const [applicationStatus, setApplicationStatus] = useState('');
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); // For error handling
+  const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredResults, setFilteredResults] = useState([]);
 
-  // Fetch student data (courses and universities) on component mount
   useEffect(() => {
     fetchStudentData();
   }, []);
 
   const fetchStudentData = async () => {
     setLoading(true);
-    setError(null); // Reset errors
+    setError(null);
 
     try {
-      // Fetch data from APIs
       const [courseData, universityData] = await Promise.all([
         fetchCourses(),
         fetchUniversities(),
@@ -31,13 +47,12 @@ const StudentDashboard = () => {
       setCourses(courseData);
       setUniversities(universityData);
 
-      // Example notifications (could come from another API in the future)
+      
       setNotifications([
         { id: 1, message: 'Your course application has been approved!' },
-        { id: 2, message: 'New course available: Quantum Physics' },
+        { id: 2, message: 'New course available: Education Science' },
       ]);
 
-      // Example application status
       setApplicationStatus('Approved');
     } catch (err) {
       console.error('Error fetching student data:', err);
@@ -47,7 +62,6 @@ const StudentDashboard = () => {
     }
   };
 
-  // Filter search results dynamically
   useEffect(() => {
     if (searchQuery) {
       const lowercasedQuery = searchQuery.toLowerCase();
@@ -60,7 +74,6 @@ const StudentDashboard = () => {
         university.name.toLowerCase().includes(lowercasedQuery)
       );
 
-      // Merge results into a single array with a type field
       setFilteredResults([
         ...filteredCourses.map((course) => ({ ...course, type: 'course' })),
         ...filteredUniversities.map((university) => ({
@@ -90,10 +103,9 @@ const StudentDashboard = () => {
         {loading ? (
           <p>Loading your data...</p>
         ) : error ? (
-          <p className="error">{error}</p> // Show error if something went wrong
+          <p className="error">{error}</p>
         ) : (
           <>
-            {/* Search Results */}
             {searchQuery && (
               <section className="search-results">
                 <h2>Search Results</h2>
@@ -115,13 +127,11 @@ const StudentDashboard = () => {
               </section>
             )}
 
-            {/* Application Status */}
             <section className="application-status">
               <h2>Application Status</h2>
-              <p>{applicationStatus ? applicationStatus : 'No application found.'}</p>
+              <p>{applicationStatus || 'No application found.'}</p>
             </section>
 
-            {/* Enrolled Courses */}
             <section className="enrolled-courses">
               <h2>Available Courses</h2>
               {courses.length > 0 ? (
@@ -142,7 +152,6 @@ const StudentDashboard = () => {
               )}
             </section>
 
-            {/* Notifications */}
             <section className="notifications">
               <h2>Notifications</h2>
               {notifications.length > 0 ? (

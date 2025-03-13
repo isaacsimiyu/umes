@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { addCourse } from '../api'; // Import the API function
+import { addCourse } from '../api'; 
 
 const AddCourse = ({ onCourseAdded }) => {
   const [courseName, setCourseName] = useState('');

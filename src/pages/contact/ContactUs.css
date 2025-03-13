@@ -1,4 +1,4 @@
-/* Contactus.css */
+
 .main {
   display: flex;
   justify-content: center;
@@ -22,13 +22,18 @@
   gap: 40px;
   justify-content: center;
   margin-top: 40px;
+  
 }
 
-/* Contact Email Links */
+
 .contact-email a {
   text-decoration: none;
   color: black;
   transition: color 0.3s;
+  background-color: #007bff;
+  padding: 10px 0;
+  border-radius: 20px;
+  max-width: 150px;
 }
 
 .contact-email a:hover {

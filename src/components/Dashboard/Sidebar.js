@@ -4,58 +4,53 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 
 const Sidebar = ({ userRole }) => {
-  const [isOpen, setIsOpen] = useState(true); 
-  const navigate = useNavigate(); 
+  const [isOpen, setIsOpen] = useState(true);
+  const navigate = useNavigate();
 
   const toggleSidebar = () => {
-    setIsOpen(!isOpen); 
+    setIsOpen(!isOpen);
   };
 
   const handleNavigation = (path) => {
-    navigate(path); 
+    navigate(path);
   };
 
   return (
     <div className={`sidebar-container ${isOpen ? 'open' : 'closed'}`}>
-      <button className="sidebar-toggle" onClick={toggleSidebar}>
+      <button
+        className="sidebar-toggle"
+        onClick={toggleSidebar}
+        aria-expanded={isOpen}
+        aria-controls="sidebar-navigation"
+      >
         {isOpen ? 'Close' : 'Menu'}
       </button>
       {isOpen && (
-        <aside className="sidebar">
+        <aside className="sidebar" id="sidebar-navigation">
           <h2>UEMS Dashboard</h2>
           <nav>
-           
             <NavDropdown
               title="Home"
               id="basic-dropdown"
               align="end"
               className="left-align-dropdown"
             >
-              <NavDropdown.Item
-                onClick={() => handleNavigation('/student-dashboard')}
-              >
-                Account Info
+              <NavDropdown.Item onClick={() => handleNavigation('')}>
+               
               </NavDropdown.Item>
-              <NavDropdown.Item
-                onClick={() => handleNavigation('/profile')}
-              >
-                 Profile Info
-              </NavDropdown.Item>
-
             </NavDropdown>
 
-            
             <NavLink
               to="/course-apply"
               className={({ isActive }) => (isActive ? 'active' : '')}
             >
-              Applications
+              CourseApply
             </NavLink>
             <NavLink
-              to="/CourseApplicationForm"
+              to="/student-applications"
               className={({ isActive }) => (isActive ? 'active' : '')}
             >
-              Applicationform
+            StudentApplications process
             </NavLink>
 
             {userRole === 'admin' && (
@@ -66,43 +61,63 @@ const Sidebar = ({ userRole }) => {
                 Manage Programs
               </NavLink>
             )}
+
             {userRole === 'student' && (
               <NavLink
-                to="/progress"
+                to="/ProgressTracker"
                 className={({ isActive }) => (isActive ? 'active' : '')}
               >
                 Progress Tracker
               </NavLink>
             )}
- <NavLink
+
+            <NavLink
               to="/dashboard-content"
               className={({ isActive }) => (isActive ? 'active' : '')}
             >
               Status
             </NavLink>
-
             <NavLink
               to="/notifications"
               className={({ isActive }) => (isActive ? 'active' : '')}
             >
               Notifications
             </NavLink>
-            <NavLink
-              to="/reports"
-              className={({ isActive }) => (isActive ? 'active' : '')}
-            >
-              Reports
-            </NavLink>
+            
             <NavLink
               to="/settings"
               className={({ isActive }) => (isActive ? 'active' : '')}
             >
               Settings
             </NavLink>
+            <NavLink
+              to="/ChatDashboard"
+              className={({ isActive }) => (isActive ? 'active' : '')}
+            >
+              ChatDashboard
+            </NavLink>
+            <NavLink
+              to="/enrollment process"
+              className={({ isActive }) => (isActive ? 'active' : '')}
+            >
+              enrollment
+            </NavLink>
+
+           
+           
           </nav>
+          
         </aside>
       )}
     </div>
+    /* <a
+     href="/enrollment process"
+     target="_blank"
+     rel="noopener noreferrer"
+     className="external-link"
+   >
+     Progress Tracker on the Web
+   </a>*/
   );
 };
 

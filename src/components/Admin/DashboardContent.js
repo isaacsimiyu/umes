@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-const AccountInfo = React.lazy(() => import('./AccountInfo'))
+
 
 const AdminDashboard = React.lazy(() => import('./AdminDashboard'));
 const AdmissionsDashboard = React.lazy(() => import('./AdmissionsDashboard'));
@@ -9,7 +9,7 @@ const DashboardContent = ({ userRole }) => {
 
   return (
     <Suspense fallback={<p>Loading dashboard...</p>}>
-      {userRole === 'student' && <AccountInfo/>}
+     
       {userRole === 'admin' && <AdminDashboard />}
       {userRole === 'admissions' && <AdmissionsDashboard />}
       {!['student', 'admin', 'admissions'].includes(userRole) && (

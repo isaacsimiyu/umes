@@ -1,9 +1,21 @@
 
 .footer {
-  background-color: #333;
-  color: #fff;
-  padding: 2rem 0;
+  background-color: #343a40; 
+  color: #ffffff; 
+  padding: 20px 0; 
+ /* position: fixed;
+  bottom: 0; 
+  width: 100%; 
+  z-index: 1000; */
   text-align: center;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  
+}
+.main {
+  margin-bottom: 50px; 
 }
 
 .footer-top {
@@ -46,7 +58,7 @@
 }
 
 .footer-links a {
-  color: #fff;
+  color: #aca9a9;
   text-decoration: none;
   font-size: 1rem;
   padding: 0.5rem 1rem; 

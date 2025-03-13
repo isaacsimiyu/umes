@@ -1,0 +1,70 @@
+
+.application-tracker {
+  font-family: Arial, sans-serif;
+  margin: 20px auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+
+.application-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.application-form input,
+.application-form button {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.application-form input {
+  width: calc(100% - 22px);
+}
+
+.application-form button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.application-form button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+.application-form button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+
+.application-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.application-item {
+  border-bottom: 1px solid #eee;
+  padding: 10px;
+  text-align: left;
+}
+
+.application-item strong {
+  color: #333;
+}
+
+.application-item em {
+  color: #666;
+  font-size: 12px;
+}
+
+.loading-text,
+.no-data-text {
+  color: #999;
+  font-style: italic;
+}

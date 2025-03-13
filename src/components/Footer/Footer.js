@@ -20,24 +20,24 @@ const Footer = () => {
   <h5>Quick Links</h5>
   <ul className="footer-links">
     <li><Link to="/">Home</Link></li>
-    <li><Link to="/about">About</Link></li>
-    <li><Link to="/services">Services</Link></li>
+    <li><Link to="/about-us">About</Link></li>
+    <li><Link to="/AboutUs">Services</Link></li>
     <li><Link to="/contact">Contact Us</Link></li>
   </ul>
 </Col>
           <Col md={4} className="footer-section">
             <h5>Follow Us</h5>
             <div className="social-icons">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://facebook.com/Isaac Iso" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faFacebook} />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://twitter.com/Isaacsimiyu2030" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faTwitter} />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://linkedin.com/in/isaac-simiyu-736847301" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faLinkedin} />
               </a>
-              <a href="https://isaacsimiyu757" target="_blank" rel="noopener noreferrer">
+              <a href="https://instagram.com/isaacsimiyu757" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faInstagram} />
               </a>
             </div>

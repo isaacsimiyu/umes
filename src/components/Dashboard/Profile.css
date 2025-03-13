@@ -1,0 +1,50 @@
+/* Profile.css */
+
+.profile-container {
+  padding: -10px;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  flex-direction: column;
+}
+
+.loading-message {
+  color: blue;
+  font-size: 16px;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+}
+
+.profile-card {
+  margin-top: 1px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #dadbea;
+  text-align: left;
+}
+
+.profile-card p {
+  margin: 8px 0;
+  font-weight: bold;
+  font-size: large;
+}
+.profile-card p:hover {
+color: #0056b3;
+}
+
+.load-profile-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.load-profile-button:hover {
+  background-color: #0056b3;
+}

@@ -1,33 +1,304 @@
+
 .settings {
   display: flex;
-  height: 100%;
+  font-family: Arial, sans-serif;
+  max-width: 1000px;
+  margin: 20px auto;
+  background: #f9f9f9;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .settings-sidebar {
   width: 200px;
-  background-color: #f0f0f0;
-  padding: 1rem;
+  background: #007bff;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  padding: 20px 0;
+  position: fixed; 
+  margin-top: 60px;
+  top: 0px;
+  left: 0;
+  right: 0;
+  z-index: 1000; 
+  display: flex; 
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; 
+  display: flex;
+  height: 100%;
 }
 
 .settings-sidebar button {
   background: none;
   border: none;
-  cursor: pointer;
-  padding: 0.5rem;
+  color: white;
+  font-size: 16px;
+  padding: 15px;
   text-align: left;
-  font-size: 1rem;
-  color: #333;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-.settings-sidebar button:hover,
+.settings-sidebar button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.settings-sidebar button.active {
+  background: white;
+  color: #007bff;
+  font-weight: bold;
+  border-left: 4px solid #007bff;
+}
+
 .settings-sidebar button:focus {
-  background-color: #ddd;
+  outline: none;
 }
 
 .settings-content {
-  flex-grow: 1;
-  padding: 2rem;
+  flex: 1;
+  padding: 20px;
+  background: white;
+}
+
+.settings-content h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.settings-content p {
+  font-size: 16px;
+  color: #555;
+}
+
+
+.profile-settings {
+  font-family: Arial, sans-serif;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.2);
+}
+
+button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.success {
+  color: green;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+
+.notification-settings {
+  font-family: Arial, sans-serif;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.settings-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+label {
+  font-size: 16px;
+  color: #333;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.save-button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background: #0056b3;
+}
+
+.save-button:focus {
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+
+.privacy-settings {
+  font-family: Arial, sans-serif;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.settings-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+label {
+  font-size: 16px;
+  color: #333;
+}
+
+select,
+input[type="checkbox"] {
+  font-size: 14px;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+select:focus,
+input[type="checkbox"]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.2);
+}
+
+.save-button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background: #0056b3;
+}
+
+.save-button:focus {
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+
+
+@media (max-width: 768px) {
+  .settings {
+    flex-direction: column;
+  }
+
+  .settings-sidebar {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .settings-sidebar button {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .settings-content {
+    padding: 15px;
+  }
 }

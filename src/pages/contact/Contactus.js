@@ -43,6 +43,8 @@ const ContactUs = () => {
   return (
     <div>
       <Header />
+      
+      <main className="main">
       <div className="contact-email">
         <a href="mailto:isaacsimiyu757@gmail.com">
           <FontAwesomeIcon icon={faEnvelope} /> Email
@@ -51,7 +53,6 @@ const ContactUs = () => {
           <FontAwesomeIcon icon={faPhone} /> WhatsApp
         </a>
       </div>
-      <main className="main">
         <section className="section">
           <h1>Contact Us</h1>
           <p>If you have any questions, concerns, or need support, feel free to contact us using the form below.</p>

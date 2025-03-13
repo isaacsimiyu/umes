@@ -2,7 +2,7 @@ import React from 'react';
 import Sidebar from './Sidebar';
 import TopBar from './TopBar';
 
-import DashboardContent from './DashboardContent';
+import AccountInfo from './AccountInfo';
 import './Dashboard.css';
 
 const Dashboard = ({ userRole }) => {
@@ -11,8 +11,8 @@ const Dashboard = ({ userRole }) => {
       <Sidebar userRole={userRole} />
       <div className="main-content">
         <TopBar />
-        
-        <DashboardContent userRole={userRole} />
+        <AccountInfo />  
+       
       </div>
     </div>
   );

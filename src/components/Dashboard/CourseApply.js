@@ -15,31 +15,26 @@ const CourseApply = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchCourses = async () => {
-    try {
-      const response = await axios.get('http://localhost:3500/api/courses');
-      setCourses(response.data.courses);
-    } catch (err) {
-      console.error('Error fetching courses:', err);
-      setError('Failed to load courses.');
-    }
-  };
-
-  const fetchUniversities = async () => {
-    try {
-      const response = await axios.get('http://localhost:3500/api/universities');
-      setUniversities(response.data.universities);
-    } catch (err) {
-      console.error('Error fetching universities:', err);
-      setError('Failed to load universities.');
-    }
-  };
-
   useEffect(() => {
-    setLoading(true);
-    Promise.all([fetchCourses(), fetchUniversities()])
-      .then(() => setError(null))
-      .finally(() => setLoading(false));
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const [courseResponse, universityResponse] = await Promise.all([
+          axios.get('http://localhost:3500/api/courses'),
+          axios.get('http://localhost:3500/api/universities'),
+        ]);
+        setCourses(courseResponse.data.courses);
+        setUniversities(universityResponse.data.universities);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching data:', err);
+        setError('Failed to load data.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const handleSubmitApplication = async () => {
@@ -48,22 +43,22 @@ const CourseApply = () => {
       return;
     }
 
-    const newApplication = {
-      studentId,
-      courseId,
-      universityId,
-    };
+    if (![studentId, courseId, universityId].every((id) => /^\d+$/.test(id))) {
+      toast.error('All IDs must be numeric.');
+      return;
+    }
 
-    toast.info('Submitting application...');
     try {
-      const response = await axios.post(
-        'http://localhost:3500/api/applications',
-        newApplication
-      );
+      toast.info('Submitting application...');
+      const response = await axios.post('http://localhost:3500/api/applications', {
+        studentId,
+        courseId,
+        universityId,
+      });
 
       if (response.status === 201) {
         toast.success('Application submitted successfully!');
-        setStudentId(''); // Reset fields after successful submission
+        setStudentId('');
         setCourseId('');
         setUniversityId('');
       } else {
@@ -75,18 +70,23 @@ const CourseApply = () => {
     }
   };
 
+  const selectedCourse = courses.find((course) => course.id.toString() === courseId);
+  const selectedUniversity = universities.find((university) => university.id.toString() === universityId);
+
   return (
     <div>
       <TopBar />
       <ToastContainer />
       <div className="course-apply">
         <h1>Apply for a Course and University</h1>
+
         {error && (
           <div className="error-container">
             <p className="error">{error}</p>
             <button onClick={() => window.location.reload()}>Retry</button>
           </div>
         )}
+
         {loading ? (
           <div className="loading-spinner">
             <CircularProgress />
@@ -134,33 +134,49 @@ const CourseApply = () => {
                 />
               </div>
 
+              {/* Submit Button Above the Displayed Course & University */}
               <button type="submit" className="submit-btn">
                 Submit Application
               </button>
             </form>
 
-            <h2>Available Courses</h2>
-            <ul className="course-list">
-              {courses.map((course) => (
-                <li key={course.id}>
-                  <h3>{course.name}</h3>
-                  <p>{course.description}</p>
-                  <p><strong>Course ID:</strong> {course.id}</p>
-                  <p><strong>Cutoff:</strong> {course.cutoff}</p>
-                </li>
-              ))}
-            </ul>
+            {/* Display Selected Course Below the Submit Button */}
+            {selectedCourse && (
+              <div className="course-details">
+                <h2>Selected Course</h2>
+                <h3>{selectedCourse.name}</h3>
+                <p>{selectedCourse.description}</p>
+                <p><strong>Cutoff:</strong> {selectedCourse.cutoff}</p>
+                <p><strong>Duration:</strong> {selectedCourse.duration}</p>
+                <p><strong>Level:</strong> {selectedCourse.level}</p>
 
-            <h2>Available Universities</h2>
-            <ul className="university-list">
-              {universities.map((university) => (
-                <li key={university.id}>
-                  <h3>{university.name}</h3>
-                  <p>{university.location}</p>
-                  <p><strong>University ID:</strong> {university.id}</p>
-                </li>
-              ))}
-            </ul>
+                <p><strong>Competencies:</strong></p>
+                <ul>
+                  {(Array.isArray(selectedCourse.competencies)
+                    ? selectedCourse.competencies
+                    : (() => {
+                        try {
+                          const parsed = JSON.parse(selectedCourse.competencies);
+                          return Array.isArray(parsed) ? parsed : [];
+                        } catch {
+                          return [];
+                        }
+                      })()
+                  ).map((competency, index) => (
+                    <li key={index}>{competency}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Display Selected University Below the Submit Button */}
+            {selectedUniversity && (
+              <div className="university-details">
+                <h2>Selected University</h2>
+                <h3>{selectedUniversity.name}</h3>
+                <p>{selectedUniversity.location}</p>
+              </div>
+            )}
           </div>
         )}
       </div>

@@ -1,50 +1,104 @@
+
 .report-container {
   font-family: Arial, sans-serif;
-  padding: 20px;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 20px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
-.report-container h1 {
+h1 {
+  color: #333;
   text-align: center;
-  color: #007bff;
+  margin-bottom: 20px;
 }
 
 .report-list {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .report-item {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 15px;
-  margin-bottom: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  margin-bottom: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.report-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.report-details {
+  flex: 1;
+  margin-right: 15px;
 }
 
 .report-details h3 {
-  margin: 0;
-  color: #333;
+  font-size: 18px;
+  margin: 0 0 5px;
+  color: #007bff;
 }
 
 .report-details p {
   margin: 5px 0;
-  color: #666;
+  font-size: 14px;
+  color: #555;
 }
 
-.report-item button {
-  padding: 10px 15px;
-  background-color: #007bff;
-  color: white;
+.report-details p strong {
+  color: #333;
+}
+
+button {
+  background: #007bff;
+  color: #fff;
   border: none;
-  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
   cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
-.report-item button:hover {
-  background-color: #0056b3;
+button:hover {
+  background: #0056b3;
+}
+
+button:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+
+@media (max-width: 600px) {
+  .report-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .report-details {
+    margin-right: 0;
+  }
+
+  button {
+    align-self: flex-end;
+  }
 }

@@ -1,0 +1,147 @@
+/* General Styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.applications-container {
+  max-width: 700px;
+  margin: 40px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Input and Button Container */
+.input-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 60%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Fetch Applications Button */
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Loading Indicator */
+.loading-container {
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+  color: #555;
+}
+
+.loading-container p {
+  margin-top: 10px;
+}
+
+/* Error Message */
+.error-message {
+  color: #d8000c;
+  background: #ffdddd;
+  padding: 10px;
+  border-radius: 5px;
+  border-left: 5px solid #d8000c;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+/* Applications List */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.application-item {
+  background: #f9f9f9;
+  padding: 15px;
+  border-left: 4px solid #007bff;
+  margin: 10px 0;
+  border-radius: 5px;
+  text-align: left;
+  transition: 0.3s ease-in-out;
+}
+
+.application-item strong {
+  color: #007bff;
+}
+
+.application-item:hover {
+  background: #e8f0ff;
+}
+
+/* No Applications Found */
+.no-applications {
+  color: #555;
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+/* Debug Data Styling */
+pre {
+  background: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+  font-size: 14px;
+  text-align: left;
+  color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .applications-container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  input {
+    width: 55%;
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .application-item {
+    font-size: 14px;
+  }
+}

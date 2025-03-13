@@ -1,0 +1,69 @@
+.notifications {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  color: #333;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.error {
+  color: red;
+  margin-bottom: 20px;
+}
+
+.notification-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notification-list li {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notification-list li.unread {
+  background-color: #f9f9f9;
+}
+
+.notification-list li.read {
+  background-color: #e9e9e9;
+  color: #777;
+}
+
+.notification-list li p {
+  margin: 0;
+  flex-grow: 1;
+}
+
+.actions button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.actions button:hover {
+  background-color: #0056b3;
+}
+
+.actions button:nth-child(2) {
+  background-color: red;
+}
+
+.actions button:nth-child(2):hover {
+  background-color: darkred;
+}

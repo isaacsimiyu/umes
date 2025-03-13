@@ -1,151 +1,280 @@
-/* Dashboard Layout */
+
 .dashboard {
   display: flex;
-  height: 100vh; /* Full viewport height */
+  height: 100vh; 
 }
 
-/* Sidebar Styling */
-.sidebar {
+
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
   width: 250px;
-  background-color: #333; /* Dark background for the sidebar */
-  color: #fff; /* White text color for contrast */
-  padding: 1rem;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
-  overflow-y: auto; /* Allow scrolling if content overflows */
   height: 100vh;
-  
+  background: #007bff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  transition: width 0.3s ease;
+  margin-top: 60px;
+  z-index: 1000; 
+  display: flex; 
+  top: 0;
+  left: 0;
+  right: 0;
 }
+
+.sidebar-container.closed {
+  width: 60px;
+}
+
 .sidebar-toggle {
-  background-color: #007bff;
+  background: #007bff;
   color: white;
   border: none;
   padding: 10px;
+  font-size: 16px;
   cursor: pointer;
-  width: 100%;
-  text-align: left;
+  margin: 10px;
+  border-radius: 5px;
+  width: 80px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+  background: #0056b3;
+}
+
+.sidebar {
+  padding: 20px;
 }
 
 .sidebar h2 {
-  font-size: 1.5rem;
-  text-align: center;
+  color: #090707;
+  font-size: 20px;
   margin-bottom: 20px;
-  color: white; /* White text color for visibility */
+  font-weight: bolder;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .sidebar nav a {
-  display: block;
-  color: #fff; /* Default link color */
-  margin: 0.5rem 0;
-  text-decoration: none; /* Remove underline */
-  padding: 0.5rem 1rem; /* Add spacing inside links */
-  border-radius: 5px; /* Rounded corners for links */
-  transition: background-color 0.3s ease; /* Smooth hover effect */
+  text-decoration: none;
+  color: #e5e1e1;
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .sidebar nav a:hover {
-  background-color: #575757; /* Highlight links on hover */
+  background: white;
+  color: #007bff;
 }
 
 .sidebar nav a.active {
-  background-color: #007bff; /* Highlight active link */
-  color: #fff;
-  font-weight: bold; /* Emphasize the active link */
+  background: #0056b3;
+  color: white;
 }
 
-/* Main Content Styling */
+.external-link {
+  margin-top: 20px;
+  text-align: center;
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.external-link:hover {
+  color: #0056b3;
+}
+
+
+
 .main-content {
-  flex-grow: 1; /* Fill remaining space */
-  background-color: #f4f4f4; /* Light gray background */
+  flex-grow: 1; 
+  background-color: #f4f4f4; 
   display: flex;
   flex-direction: column;
 }
 
+
 .top-bar {
-  background-color: #007bff; /* Blue background for the top bar */
-  color: #fff; /* White text color */
+  position: fixed; 
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  height: 60px;
+  background: #007bff;
+  color: white;
+  padding: 0 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
 
 .search-container {
   position: relative;
   flex: 1;
+  margin-right: 120px;
+  max-width: 400px;
+  text-align: center;
+  display: flex;
+  
+ 
 }
 
 .search-container input {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
+.search-container input:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+.clear-search {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  
   font-size: 16px;
+  cursor: pointer;
+
 }
 
 .search-results {
   position: absolute;
-  top: 40px;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  top: 45px;
+  left: 0;
   width: 100%;
-  max-height: 200px;
-  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
 
 .search-results ul {
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 10px;
 }
 
 .search-results li {
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
 }
 
 .search-results li:last-child {
   border-bottom: none;
 }
 
+.search-results li:hover {
+  background: #f8f8f8;
+}
+
 .search-results p {
   padding: 10px;
+  font-size: 14px;
+ 
   text-align: center;
-  color: #777;
 }
+
 
 .icons {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 15px;
 }
 
-.notification-icon,
-.profile-icon,
-.logout-icon {
+.icons button {
   background: none;
   border: none;
   font-size: 18px;
+  color: white;
   cursor: pointer;
+}
+
+.icons button:hover {
+  color: #ddd;
 }
 
 .logout-icon {
   color: red;
 }
 
-/* Responsive Sidebar */
+.logout-icon:hover {
+  color: #ff9999;
+}
+
+.uploaded-certificate a {
+  text-decoration: none;
+  color: #2ecc71;
+  font-weight: bold;
+}
+
+.uploaded-certificate a:hover {
+  text-decoration: underline;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #e74c3c;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+
+
+@media (max-width: 768px) {
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-container {
+    margin-bottom: 10px;
+  }
+
+  .icons {
+    width: 100%;
+    justify-content: space-around;
+  }
+}
+
+
+
+
 @media (max-width: 768px) {
   .sidebar {
-    width: 200px; /* Reduce sidebar width for smaller screens */
+    width: 200px; 
   }
 
   .sidebar h2 {
-    font-size: 1.2rem; /* Adjust heading size */
+    font-size: 1.2rem; 
   }
 
   .sidebar nav a {
-    font-size: 0.9rem; /* Adjust link font size */
-    padding: 0.5rem; /* Reduce padding for smaller links */
+    font-size: 0.9rem;
+    padding: 0.5rem; 
   }
 }

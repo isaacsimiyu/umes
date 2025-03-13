@@ -1,65 +1,161 @@
-/* General container styles */
+
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
-  background-color: #f0f4f7;
+  font-family: Arial, sans-serif;
 }
 
-/* Main content area */
-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-/* Section for the welcome message */
-section {
+.main {
   text-align: center;
-  background-color: #fff;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  margin: 0 20px;
+  padding: 20px;
+  margin-top: 200px;
 }
 
-/* Heading styles */
-h1 {
+.section {
+  margin-bottom: 30px;
+}
+
+.section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
   color: #333;
-  margin-bottom: 20px;
-  font-size: 28px;
 }
 
-/* Paragraph styles */
-p {
+.section p {
+  font-size: 1.2rem;
   color: #555;
-  font-size: 18px;
-  margin-bottom: 40px;
-  line-height: 1.6;
 }
 
-/* Button container */
 .buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+  margin-top: 20px;
 }
 
-/* Button styles */
-a {
+.buttons .button {
   display: inline-block;
   padding: 10px 20px;
-  text-decoration: none;
-  color: #fff;
+  margin: 0 10px;
   background-color: #007bff;
+  color: white;
+  text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s ease;
-  font-size: 16px;
 }
 
-/* Button hover effect */
-a:hover {
+.buttons .button:hover {
   background-color: #0056b3;
+}
+
+
+.slider-section {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.image-slider {
+  overflow: hidden;
+  position: relative;
+}
+
+.image-slide {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 400px;
+  transition: opacity 0s ease-in-out;
+  opacity: 0;
+}
+
+.image-slide.active {
+  display: block;
+  position: relative;
+  opacity: 1;
+}
+
+.image-slide img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.description {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+
+
+  .slider-controls {
+   position: absolute;
+  top: 50%;
+  left: 70;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 2;
+  }
+
+
+.slider-controls button {
+  .slider-controls button {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    max-width: 20px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.slider-controls button:hover {
+  background-color: #0056b3;
+}
+
+.slider-controls button:first-child {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+.slider-controls button:last-child {
+  position: absolute;
+  top: 90%;
+  left: 20px;
+  transform: translateY(-50%);
+}
+
+
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.slider-dots .dot {
+  width: 12px;
+  height: 12px;
+  margin: 0 5px;
+  border-radius: 50%;
+  background-color: #ccc;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.slider-dots .dot.active {
+  background-color: #007bff;
 }

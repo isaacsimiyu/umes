@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { fetchReports, downloadReport } from '../api'; // Import API functions
-import './Report.css'; // Import styles
+import { fetchReports, downloadReport } from '../../api'; 
+import './Report.css'; 
 
 const Report = ({ studentId, userRole }) => {
-  const [reports, setReports] = useState([]); // List of reports
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
+  const [reports, setReports] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
 
   useEffect(() => {
     const loadReports = async () => {
       try {
         setLoading(true);
-        const data = await fetchReports(studentId, userRole); // Fetch reports
+        const data = await fetchReports(studentId, userRole); 
         setReports(data);
       } catch (err) {
         setError('Failed to load reports. Please try again later.');
@@ -25,7 +25,7 @@ const Report = ({ studentId, userRole }) => {
 
   const handleDownload = async (reportId) => {
     try {
-      await downloadReport(reportId); // Download the report
+      await downloadReport(reportId); 
       alert('Report downloaded successfully!');
     } catch (err) {
       alert('Failed to download the report. Please try again.');
@@ -51,9 +51,21 @@ const Report = ({ studentId, userRole }) => {
         {reports.map((report) => (
           <li key={report.id} className="report-item">
             <div className="report-details">
-              <h3>{report.title}</h3>
+             
+              <h3>
+                <a
+                  href={report.fileUrl} 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="report-link"
+                >
+                  {report.title}
+                </a>
+              </h3>
               <p>{report.description}</p>
-              <p><strong>Date:</strong> {new Date(report.date).toLocaleDateString()}</p>
+              <p>
+                <strong>Date:</strong> {new Date(report.date).toLocaleDateString()}
+              </p>
             </div>
             <button onClick={() => handleDownload(report.id)}>Download</button>
           </li>

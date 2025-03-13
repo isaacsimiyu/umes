@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { routes } from "./config/Routes"; 
-
+import ScrollToTop from "./components/ScrollToTop"; 
 import "./App.css";
 
 
@@ -10,7 +10,7 @@ export default function App() {
 
     
     <Router>
-      
+      <ScrollToTop />
       <Routes>
      
      

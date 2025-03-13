@@ -1,0 +1,32 @@
+.enrollment-process {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.enrollment-process h1,
+.enrollment-process h2 {
+  color: #333;
+}
+
+.apply-course select,
+.apply-course button {
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.message {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+}
